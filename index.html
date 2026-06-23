@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ueue — Save now, watch on your schedule</title>
+    <meta
+      name="description"
+      content="ueue is the calm home for the videos, articles and posts you save and never get back to. Private, on-device, and scheduled around your time."
+    />
+    <link rel="icon" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <style>
+      :root {
+        --bg: #0a0c17;
+        --bg-2: #0e1120;
+        --surface: #141829;
+        --border: #232843;
+        --text: #eef1fb;
+        --muted: #98a0bd;
+        --accent: #818cf8;
+        --accent-2: #4f46e5;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .wrap {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      /* Hero */
+      .hero {
+        position: relative;
+        text-align: center;
+        padding: 96px 24px 72px;
+        background:
+          radial-gradient(
+            900px 460px at 50% -10%,
+            rgba(99, 102, 241, 0.28),
+            transparent 70%
+          ),
+          var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+      .logo {
+        width: 96px;
+        height: 96px;
+        border-radius: 24px;
+        box-shadow:
+          0 12px 40px rgba(79, 70, 229, 0.45),
+          0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+      .hero h1 {
+        font-size: 56px;
+        letter-spacing: -0.03em;
+        margin: 24px 0 10px;
+        font-weight: 800;
+      }
+      .tag {
+        font-size: 21px;
+        color: var(--muted);
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .pill {
+        display: inline-block;
+        margin-top: 28px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: rgba(129, 140, 248, 0.12);
+        border: 1px solid rgba(129, 140, 248, 0.3);
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      /* Sections */
+      section {
+        padding: 64px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      h2 {
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 26px;
+      }
+      .lead {
+        font-size: 20px;
+        color: var(--text);
+      }
+      .lead .em {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      /* Feature grid */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 22px;
+      }
+      .card .ic {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 14px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
+      .card h3 {
+        font-size: 17px;
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .card p {
+        color: var(--muted);
+        font-size: 15px;
+      }
+      /* Privacy callout */
+      .privacy {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.16),
+          rgba(99, 102, 241, 0.06)
+        );
+        border: 1px solid rgba(129, 140, 248, 0.28);
+        border-radius: 20px;
+        padding: 32px;
+      }
+      .privacy h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      .privacy p {
+        color: var(--muted);
+        font-size: 16px;
+      }
+      /* FAQ */
+      details {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 4px 20px;
+        margin-bottom: 12px;
+        background: var(--surface);
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 16px 0;
+        list-style: none;
+        font-size: 16px;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        float: right;
+        color: var(--accent);
+        font-size: 20px;
+        line-height: 1;
+      }
+      details[open] summary::after {
+        content: "–";
+      }
+      details p {
+        color: var(--muted);
+        padding: 0 0 18px;
+      }
+      /* Contact */
+      .contact-box {
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px 24px;
+      }
+      .contact-box p {
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .btn:hover {
+        text-decoration: none;
+        opacity: 0.92;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+        padding: 40px 24px 56px;
+      }
+      footer a {
+        color: var(--muted);
+      }
+      @media (max-width: 640px) {
+        .hero h1 {
+          font-size: 42px;
+        }
+        .tag {
+          font-size: 18px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <img class="logo" src="./logo.png" alt="ueue app icon" />
+      <h1>ueue</h1>
+      <p class="tag">Save now. Watch on your schedule.</p>
+      <span class="pill">Private · On-device · Offline</span>
+    </header>
+
+    <main class="wrap">
+      <section>
+        <h2>What is ueue</h2>
+        <p class="lead">
+          ueue is the calm home for everything you save and never get back to.
+          Tap <span class="em">Share</span> in any app — a video, an article, a
+          reel, a podcast, a post — and it lands in ueue. Sort it into a
+          category, and ueue brings it back to you at the time you choose, in a
+          focused session. <span class="em">No endless "watch later" pile.</span>
+        </p>
+      </section>
+
+      <section>
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="ic">🔗</div>
+            <h3>Save from anywhere</h3>
+            <p>Share links straight from any app into ueue — videos, articles, reels, podcasts and more.</p>
+          </div>
+          <div class="card">
+            <div class="ic">🗂️</div>
+            <h3>Organize into categories</h3>
+            <p>Productivity, Learning, Side Hustle, or make your own — each with its own colour and rhythm.</p>
+          </div>
+          <div class="card">
+            <div class="ic">🗓️</div>
+            <h3>Scheduled sessions</h3>
+            <p>Pick when each category resurfaces and ueue reminds you — so you actually get back to it.</p>
+          </div>
+          <div class="card">
+            <div class="ic">⏰</div>
+            <h3>Reminders &amp; alarms</h3>
+            <p>Set any time for a single link, as a gentle notification or a time-sensitive alert.</p>
+          </div>
+          <div class="card">
+            <div class="ic">🔥</div>
+            <h3>Build a streak</h3>
+            <p>Show up for your sessions and keep the momentum going.</p>
+          </div>
+          <div class="card">
+            <div class="ic">✅</div>
+            <h3>Triage &amp; finish</h3>
+            <p>Sort new saves in your inbox, mark things done, and watch the queue shrink.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="privacy">
+          <h3>Private by design</h3>
+          <p>
+            ueue keeps everything on your device. No account, no sign-up, no
+            tracking — and nothing is ever sent to a server. It works fully
+            offline.
+          </p>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>How do I save a link?</summary>
+          <p>
+            In any app, tap the Share button and choose ueue. Pick a category
+            (or leave it in your Inbox), optionally set a reminder, and tap
+            Save. You can also tap “Add a link” inside ueue and paste a URL.
+          </p>
+        </details>
+        <details>
+          <summary>Where do my saved links go?</summary>
+          <p>
+            Links you sort into a category appear in that category’s list and
+            come back in its scheduled sessions. Anything you don’t categorise
+            waits in your Inbox for triage.
+          </p>
+        </details>
+        <details>
+          <summary>How do reminders work?</summary>
+          <p>
+            Each category can have its own schedule (for example, Learning every
+            weekday at 8 PM). You can also set a one-off reminder on any single
+            link — as a normal notification or a time-sensitive alert.
+          </p>
+        </details>
+        <details>
+          <summary>Are my links private?</summary>
+          <p>
+            Yes. ueue stores everything locally on your device. There’s no
+            account and nothing is uploaded to a server, so your saved links stay
+            yours.
+          </p>
+        </details>
+        <details>
+          <summary>Why doesn’t a thumbnail show for some links?</summary>
+          <p>
+            Some sites (like Instagram) don’t allow their previews to be fetched,
+            so ueue shows a clean type icon instead of scraping them — by design,
+            to respect your privacy and their terms.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <h2>Support</h2>
+        <div class="contact-box">
+          <p>
+            Questions, bugs, or feedback? We’d love to hear from you and usually
+            reply within a couple of days.
+          </p>
+          <a class="btn" href="mailto:saifmd238@gmail.com?subject=ueue%20support"
+            >Email support</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Mohd Saif · ueue</p>
+    </footer>
+  </body>
+</html>
